@@ -1,0 +1,375 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>ArcGIS API for JavaScript Tutorials: Find places</title>
+  <style>
+  html, body, #viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.18/"></script>
+
+  <script>
+
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/tasks/Locator",
+    "esri/Graphic",
+	"esri/layers/GraphicsLayer"
+    ], function(esriConfig,Map, MapView, Locator, Graphic, GraphicsLayer) {
+
+
+    esriConfig.apiKey = "AAPK0526b128a83241a4b0bc34004d9e0106RFNfCojGPZaxbgrApbFqTEl2HZrh4AO03J18nSS1hWtvb1n-4EGlWsyBYKZLyJ-d";
+
+    const map = new Map({
+      basemap: "arcgis-midcentury"
+    });
+
+    const view = new MapView({
+      container: "viewDiv",
+      map: map,
+      center: [-80.981941, 43.370834], //Longitude, latitude
+      zoom: 12
+    });
+	
+	// creating a heart polygon for Valentines day theme
+	const polygon = {
+		type: "polygon",
+		rings: [
+            [
+              -80.98393678665161,
+              43.37167719517875
+            ],
+            [
+              -80.9825849533081,
+              43.370756912854624
+            ],
+            [
+              -80.98132967948914,
+              43.37171618988409
+            ],
+            [
+              -80.98076105117798,
+              43.372355699474504
+            ],
+            [
+              -80.981125831604,
+              43.372784635055545
+            ],
+            [
+              -80.98198413848877,
+              43.37281583025221
+            ],
+            [
+              -80.9825313091278,
+              43.37234790061766
+            ],
+            [
+              -80.98292827606201,
+              43.37286262301707
+            ],
+            [
+              -80.98381876945496,
+              43.372753439842846
+            ],
+            [
+              -80.98421573638916,
+              43.37230110745564
+            ],
+            [
+              -80.98393678665161,
+              43.37167719517875
+            ]
+          ]
+	};
+	
+	const graphicsLayer = new GraphicsLayer();
+			map.add(graphicsLayer);
+	
+	const simpleFillSymbol = {
+			type: "simple-fill",
+			color: [181, 26, 58, 0.5],  // Orange, opacity 80%
+			outline: {
+				color: [255, 255, 255],
+				width: 1
+			}
+		 };
+		 
+		 const popupTemplate = {
+			title: "{Name}",
+			
+		 }
+		 const attributes = {
+			Name: "Happy Valentines Day!",
+			
+		 }
+				 
+		 const polygonGraphic = new Graphic({
+			geometry: polygon,
+			symbol: simpleFillSymbol,
+			
+			attributes: attributes,
+			popupTemplate: popupTemplate
+
+		 });
+		 graphicsLayer.add(polygonGraphic);
+		 
+		const polygon2 = {
+		type: "polygon",
+		rings:  
+          [
+            [
+              -81.024169921875,
+              43.37935087013152
+            ],
+            [
+              -81.01884841918945,
+              43.36699764851419
+            ],
+            [
+              -81.0112953186035,
+              43.36138171595104
+            ],
+            [
+              -80.98520278930664,
+              43.34178428025316
+            ],
+            [
+              -80.9721565246582,
+              43.34627851892777
+            ],
+            [
+              -80.95602035522461,
+              43.354267455048884
+            ],
+            [
+              -80.94572067260742,
+              43.361132106881726
+            ],
+            [
+              -80.94074249267578,
+              43.36525052520596
+            ],
+            [
+              -80.93902587890625,
+              43.37049174416978
+            ],
+            [
+              -80.93765258789061,
+              43.37735456034533
+            ],
+            [
+              -80.93576431274414,
+              43.38359281019598
+            ],
+            [
+              -80.93748092651367,
+              43.38820870185589
+            ],
+            [
+              -80.94297409057617,
+              43.39107786275974
+            ],
+            [
+              -80.95035552978516,
+              43.39344793671609
+            ],
+            [
+              -80.95722198486328,
+              43.39432109849375
+            ],
+            [
+              -80.96237182617188,
+              43.393946887843825
+            ],
+            [
+              -80.96906661987305,
+              43.39032939909631
+            ],
+            [
+              -80.97043991088867,
+              43.38858294793706
+            ],
+            [
+              -80.9743881225586,
+              43.386961198230075
+            ],
+            [
+              -80.97610473632811,
+              43.38546415998867
+            ],
+            [
+              -80.97902297973633,
+              43.384091842455746
+            ],
+            [
+              -80.9827995300293,
+              43.38558891458754
+            ],
+            [
+              -80.9853744506836,
+              43.38770970348651
+            ],
+            [
+              -80.98726272583008,
+              43.39095311945769
+            ],
+            [
+              -80.99172592163086,
+              43.393572674883146
+            ],
+            [
+              -80.99653244018555,
+              43.395817917985966
+            ],
+            [
+              -81.00288391113281,
+              43.39669104561584
+            ],
+            [
+              -81.00786209106445,
+              43.39556845063809
+            ],
+            [
+              -81.01387023925781,
+              43.39556845063809
+            ],
+            [
+              -81.0186767578125,
+              43.39269950232203
+            ],
+            [
+              -81.02348327636717,
+              43.38995516379854
+            ],
+            [
+              -81.0245132446289,
+              43.38558891458754
+            ],
+            [
+              -81.024169921875,
+              43.37935087013152
+            ]
+          ]
+		  
+		};
+	
+	const graphicsLayer2 = new GraphicsLayer();
+			map.add(graphicsLayer2);
+	
+	const simpleFillSymbol2 = {
+			type: "simple-fill",
+			color: [226, 71, 103, 0.3],  // Orange, opacity 80%
+			outline: {
+				color: [255, 255, 255],
+				width: 1
+			}
+		 };
+		 
+		 const popupTemplate2 = {
+			title: "{Name}",
+			
+		 }
+		 const attributes2 = {
+			Name: "Happy Valentines Day!",
+			
+		 }
+				 
+		 const polygonGraphic2 = new Graphic({
+			geometry: polygon2,
+			symbol: simpleFillSymbol2,
+			
+			attributes: attributes2,
+			popupTemplate: popupTemplate2
+
+		 });
+		 graphicsLayer.add(polygonGraphic2);
+		
+	
+
+    const places = ["Parks and Outdoors", "Coffee shop", "Gas station", "Food", "Hotel", "Art Gallery", 
+					"Art Museum", "Museum", "Performing Arts", "Pizza", "Thai Food", "Bistro"];
+
+    const select = document.createElement("select","");
+      select.setAttribute("class", "esri-widget esri-select");
+      select.setAttribute("style", "width: 175px; font-family: 'Avenir Next W00'; font-size: 1em");
+
+    places.forEach(function(p){
+      const option = document.createElement("option");
+      option.value = p;
+      option.innerHTML = p;
+      select.appendChild(option);
+    });
+
+    view.ui.add(select, "top-right");
+
+   const locator = new Locator({
+        url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+    });
+
+   // Find places and add them to the map
+   function findPlaces(category, pt) {
+    locator.addressToLocations({
+      location: pt,
+      categories: [category],
+      maxLocations: 25,
+      outFields: ["Place_addr", "PlaceName"]
+    })
+
+    .then(function(results) {
+      view.popup.close();
+      view.graphics.removeAll();
+
+      results.forEach(function(result){
+        view.graphics.add(
+          new Graphic({
+            attributes: result.attributes,  // Data attributes returned
+            geometry: result.location, // Point returned
+            symbol: {
+             type: "simple-marker",
+             color: "#000000",
+             size: "12px",
+             outline: {
+               color: "#ffffff",
+               width: "2px"
+             }
+            },
+
+            popupTemplate: {
+              title: "{PlaceName}", // Data attribute names
+              content: "{Place_addr}"
+            }
+         }));
+      });
+
+    });
+
+  }
+
+  // Search for places in center of map
+  view.watch("stationary", function(val) {
+    if (val) {
+       findPlaces(select.value, view.center);
+    }
+    });
+
+  // Listen for category changes and find places
+  select.addEventListener('change', function (event) {
+    findPlaces(event.target.value, view.center);
+  });
+
+});
+  </script>
+
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
